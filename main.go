@@ -420,6 +420,7 @@ func navLeft(ctx context.Context) error {
 	muNavWaiting.Lock()
 	listenEvents = true
 	muNavWaiting.Unlock()
+	time.Sleep(time.Second)
 	chromedp.KeyEvent(kb.ArrowLeft).Do(ctx)
 	muNavWaiting.Lock()
 	navWaiting = true
@@ -502,6 +503,8 @@ func startDownload(ctx context.Context) error {
 // with an error if the download stops making any progress for more than a minute.
 func (s *Session) download(ctx context.Context, location string) (string, error) {
 
+	time.Sleep(time.Second)
+	
 	if err := startDownload(ctx); err != nil {
 		return "", err
 	}
